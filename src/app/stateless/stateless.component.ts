@@ -1,13 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ChangeDetection } from '@angular/cli/lib/config/schema';
+import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../interface/product';
 
 @Component({
   selector: 'app-stateless',
   templateUrl: './stateless.component.html',
-  styleUrls: ['./stateless.component.css']
+  styleUrls: ['./stateless.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatelessComponent implements OnInit {
 
+  @Output () cursomatriculado: EventEmitter<Product> = new EventEmitter();
   @Input () product: Product;
   public matricula: string;
   private disable: boolean;
@@ -20,7 +23,8 @@ export class StatelessComponent implements OnInit {
 
   matricularse() {
     this.disable = true;
-    this.matricula = 'Está matriculado';
+    this.matricula = 'Seleccionado';
+    this.cursomatriculado.emit(this.product);
   }
 
   isdisabled() {

@@ -1,0 +1,29 @@
+<!-- Button trigger modal -->
+<button *ngIf="!isDisabled" type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" [disabled]="isDisabled"
+(click)="showModal=true">
+    Confirmar Matrícula
+  </button>
+
+<!-- Mensaje de Confirmación de las matrículas-->
+<h1 *ngIf="isConfirmed"><span class="badge badge-success badge-pill">Matrícula confirmada, ¡gracias!</span></h1>
+  
+  <!-- Modal -->
+<div class="modal fade" [ngClass]="{'show': showModal}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmar Matrícula</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Desea proceder a hacer efectiva la matrícula para los cursos seleccionados?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModal=false">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="showModal=false" (click)="isConfirmed=true" (click)="isDisabled=true">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
